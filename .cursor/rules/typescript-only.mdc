@@ -1,0 +1,13 @@
+# TypeScript Only Enforcement
+
+This project uses TypeScript **exclusively**. All code files must be:
+
+- `.ts` or `.tsx` (no `.js`, `.jsx`, `.mjs`, or `.cjs` files except for config files like `next.config.mjs`, `postcss.config.mjs` which are required by tooling.
+
+## Rules
+
+1. Every new code file created must be written in TypeScript with strict mode enabled.
+2. All exports, provide explicit type annotations for function parameters and return types where inference is not sufficient.
+3. No `any` type — use `unknown` or proper generics instead.
+4. Prefer `type` over interfaces unless declaration merging is needed.
+5. Use `import type` for type-only imports.
