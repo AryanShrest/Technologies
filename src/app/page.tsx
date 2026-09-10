@@ -12,10 +12,11 @@ import StatsFaqSection from '@/components/home/StatsFaqSection'
 import TeamSection from '@/components/home/TeamSection'
 import WhyCoreCraft from '@/components/home/WhyCoreCraft'
 import { SiteHeader } from '@/components/layout'
+import { getCatalog } from '@/lib/catalog'
 import { getHomeContent } from '@/lib/home-content'
 
 export default async function Home() {
-  const content = await getHomeContent()
+  const [content, catalog] = await Promise.all([getHomeContent(), getCatalog()])
   return (
     <div className="bg-white">
       <SiteHeader />
@@ -23,7 +24,7 @@ export default async function Home() {
         <Hero slides={content.heroSlides} />
         <ClientsSection partners={content.partners} />
         <HowWeWork />
-        <ServicesSection />
+        <ServicesSection items={catalog.services} />
         <PortfolioSection />
         <TeamSection />
         <WhyCoreCraft />

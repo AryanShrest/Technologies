@@ -15,13 +15,26 @@ const pathInquiry: Record<string, string> = {
   'launch-sprint': 'New website or redesign',
 }
 
+const serviceInquiry: Record<string, string> = {
+  'cloud-hosting-services': 'Cloud and hosting',
+  'digital-marketing': 'Digital growth',
+  'mobile-app-development': 'Mobile application',
+  'software-development': 'Custom software',
+  'ui-ux-graphic-design': 'New website or redesign',
+  'website-development': 'New website or redesign',
+}
+
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ path?: string }>
+  searchParams?: Promise<{ path?: string; service?: string }>
 }) {
   const params = await searchParams
-  const initialInquiry = params?.path ? pathInquiry[params.path] : undefined
+  const initialInquiry = params?.path
+    ? pathInquiry[params.path]
+    : params?.service
+      ? serviceInquiry[params.service]
+      : undefined
 
   return (
     <div className="bg-white">

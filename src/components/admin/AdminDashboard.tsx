@@ -1,12 +1,10 @@
 'use client'
 
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import type { FormEvent } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui'
-import { createBrowserSupabaseClient } from '@/lib/supabase/browser'
+import { AdminShell } from '@/components/admin/AdminShell'
 
 type RawHero = {
   active: boolean
@@ -112,7 +110,6 @@ function MediaCard({
 }
 
 export function AdminDashboard({ email }: { email: string }) {
-  const router = useRouter()
   const [content, setContent] = useState<Content>({ heroSlides: [], partners: [] })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
@@ -145,35 +142,15 @@ export function AdminDashboard({ email }: { email: string }) {
     }
   }
 
-  async function logout() {
-    await createBrowserSupabaseClient().auth.signOut()
-    router.replace('/admin/login')
-    router.refresh()
-  }
-
   return (
-    <main className="min-h-screen bg-slate-100 px-5 py-8" id="primary">
-      <div className="mx-auto max-w-6xl">
-        <header className="flex flex-col gap-4 rounded-2xl bg-slate-950 p-6 text-white sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-300">
-              CoreCraft CMS
-            </p>
-            <h1 className="mt-2 text-3xl font-extrabold">Homepage content</h1>
-            <p className="mt-2 text-sm text-slate-300">Signed in as {email}</p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              className="rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white"
-              href="/admin/inquiries"
-            >
-              View inquiries
-            </Link>
-            <Button onClick={logout} variant="secondary">
-              Sign out
-            </Button>
-          </div>
-        </header>
+    <AdminShell email={email} title="Homepage">
+      <div className="mx-auto max-w-7xl">
+        <div>
+          <h2 className="text-2xl font-extrabold text-slate-950">Homepage content</h2>
+          <p className="mt-1 text-sm text-slate-500">
+            Manage the hero carousel and trusted partner logos.
+          </p>
+        </div>
 
         {error && (
           <p className="mt-6 rounded-xl bg-red-50 p-4 text-red-700" role="alert">
@@ -182,7 +159,7 @@ export function AdminDashboard({ email }: { email: string }) {
         )}
         {loading && <p className="mt-6 text-sm text-slate-600">Loading managed content…</p>}
 
-        <section className="mt-8 grid gap-8 lg:grid-cols-2">
+        <section className="mt-6 grid gap-8 xl:grid-cols-2">
           <div className="rounded-3xl bg-white p-6 shadow-sm">
             <p className="text-xs font-bold uppercase tracking-widest text-blue-600">
               Hero manager
@@ -279,6 +256,6 @@ export function AdminDashboard({ email }: { email: string }) {
           </div>
         </section>
       </div>
-    </main>
+    </AdminShell>
   )
 }

@@ -5,8 +5,9 @@ import { useState } from 'react'
 import { Reveal, StaggerGroup } from '@/components/motion'
 import { Button, SectionHeading } from '@/components/ui'
 import { cn } from '@/utils/format'
+import type { PricingGoal, PricingPlan } from '@/types/catalog'
 
-type Goal = 'grow' | 'launch' | 'transform'
+type Goal = PricingGoal
 
 const goals: readonly { id: Goal; label: string; prompt: string }[] = [
   {
@@ -25,51 +26,6 @@ const goals: readonly { id: Goal; label: string; prompt: string }[] = [
     prompt: 'Connect systems and replace manual work with durable software.',
   },
 ]
-
-const plans = [
-  {
-    accent: 'from-sky-400 to-blue-600',
-    description: 'For a focused website, campaign, prototype, or first digital product.',
-    features: [
-      'Discovery workshop',
-      'Focused scope and roadmap',
-      'Design and development',
-      'Launch readiness review',
-    ],
-    goal: 'launch' as Goal,
-    id: 'launch-sprint',
-    name: 'Launch Sprint',
-    timeline: 'Focused delivery',
-  },
-  {
-    accent: 'from-blue-500 to-indigo-600',
-    description: 'For businesses ready to strengthen an existing platform and accelerate growth.',
-    features: [
-      'Experience and technical audit',
-      'Prioritized growth roadmap',
-      'Iterative product delivery',
-      'Measurement and optimization',
-    ],
-    goal: 'grow' as Goal,
-    id: 'growth-partnership',
-    name: 'Growth Partnership',
-    timeline: 'Ongoing collaboration',
-  },
-  {
-    accent: 'from-violet-500 to-blue-700',
-    description: 'For custom software, connected workflows, and complex digital transformation.',
-    features: [
-      'Stakeholder discovery',
-      'Solution architecture',
-      'Phased implementation',
-      'Enablement and long-term support',
-    ],
-    goal: 'transform' as Goal,
-    id: 'digital-transformation',
-    name: 'Digital Transformation',
-    timeline: 'Phased program',
-  },
-] as const
 
 const comparisonRows = [
   ['Strategy and discovery', 'Focused', 'Continuous', 'Organization-wide'],
@@ -106,7 +62,7 @@ function ArrowIcon() {
   )
 }
 
-export function PricingStudio() {
+export function PricingStudio({ plans }: { plans: PricingPlan[] }) {
   const [goal, setGoal] = useState<Goal>('grow')
   const [comparisonOpen, setComparisonOpen] = useState(false)
   const recommendation = plans.find((plan) => plan.goal === goal) ?? plans[1]
@@ -180,7 +136,14 @@ export function PricingStudio() {
                 >
                   <div
                     aria-hidden="true"
-                    className={cn('absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r', plan.accent)}
+                    className={cn(
+                      'absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r',
+                      plan.goal === 'launch'
+                        ? 'from-sky-400 to-blue-600'
+                        : plan.goal === 'grow'
+                          ? 'from-blue-500 to-indigo-600'
+                          : 'from-violet-500 to-blue-700',
+                    )}
                   />
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -200,7 +163,7 @@ export function PricingStudio() {
                   </p>
                   <div className="my-6 border-y border-slate-100 py-5">
                     <span className="block text-2xl font-extrabold text-ink-heading">
-                      Custom proposal
+                      {plan.priceLabel}
                     </span>
                     <span className="text-sm text-ink-body">
                       Scoped after a project conversation

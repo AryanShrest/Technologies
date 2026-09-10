@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 
 import { PageBanner, SiteHeader } from '@/components/layout'
 import { PricingStudio } from '@/components/pricing/PricingStudio'
+import Footer from '@/components/home/Footer'
+import { getCatalog } from '@/lib/catalog'
 
 export const metadata: Metadata = {
   title: 'Pricing',
@@ -9,7 +11,8 @@ export const metadata: Metadata = {
     'Explore flexible CoreCraft Technologies engagement paths for launches, digital growth, and custom transformation projects.',
 }
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const { pricingPlans } = await getCatalog()
   return (
     <div className="bg-white">
       <SiteHeader />
@@ -19,8 +22,9 @@ export default function PricingPage() {
           eyebrow="Flexible by design"
           title="Pricing without the guesswork"
         />
-        <PricingStudio />
+        <PricingStudio plans={pricingPlans} />
       </main>
+      <Footer />
     </div>
   )
 }

@@ -3,10 +3,11 @@ import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
 import { PricingStudio } from './PricingStudio'
+import { fallbackPricingPlans } from '@/lib/catalog'
 
 describe('PricingStudio', () => {
   it('does not publish unapproved monetary prices', () => {
-    render(<PricingStudio />)
+    render(<PricingStudio plans={fallbackPricingPlans} />)
 
     expect(screen.getAllByText('Custom proposal')).toHaveLength(3)
     expect(screen.queryByText(/\$|NPR|NRs\.?/i)).not.toBeInTheDocument()
@@ -14,7 +15,7 @@ describe('PricingStudio', () => {
 
   it('updates the recommended engagement from the selected goal', async () => {
     const user = userEvent.setup()
-    render(<PricingStudio />)
+    render(<PricingStudio plans={fallbackPricingPlans} />)
 
     expect(screen.getByText('Recommended path:').parentElement).toHaveTextContent(
       'Growth Partnership',
@@ -25,7 +26,7 @@ describe('PricingStudio', () => {
 
   it('reveals the comparison table on request', async () => {
     const user = userEvent.setup()
-    render(<PricingStudio />)
+    render(<PricingStudio plans={fallbackPricingPlans} />)
 
     const trigger = screen.getByRole('button', { name: 'Compare engagement paths' })
     expect(trigger).toHaveAttribute('aria-expanded', 'false')
