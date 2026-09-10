@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
       {/* Top bar */}
-      <div className="hidden lg:block bg-primary-900 text-white text-xs">
+      <div className="hidden lg:block bg-indigo-600 text-white text-xs">
         <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
