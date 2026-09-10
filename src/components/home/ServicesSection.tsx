@@ -14,7 +14,7 @@ const icons = [
 
 export default function ServicesSection({ items }: { items: ServiceItem[] }) {
   return (
-    <section className="bg-white py-16 lg:py-24">
+    <section id="services" className="bg-white py-16 lg:py-24">
       <div className="site-container">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand">What we do</p>

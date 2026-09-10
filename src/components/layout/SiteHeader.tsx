@@ -96,6 +96,7 @@ export function SiteHeader() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState<string | null>(null)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const mobilePanelRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number | null>(null)
@@ -128,7 +129,29 @@ export function SiteHeader() {
   }, [])
 
   useEffect(() => {
-    if (!menuOpen) return
+    if (pathname !== '/') return
+    const sections = [
+      { id: 'services', href: '/services' },
+      { id: 'portfolio', href: '/#portfolio' },
+    ]
+    const observers: IntersectionObserver[] = []
+    sections.forEach(({ id, href }) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(href)
+          else setActiveSection((current) => (current === href ? null : current))
+        },
+        { threshold: 0.3 },
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+    return () => observers.forEach((o) => o.disconnect())
+  }, [pathname])
+
+  useEffect(() => {
 
     const previousOverflow = document.body.style.overflow
     const panel = mobilePanelRef.current
@@ -241,7 +264,9 @@ export function SiteHeader() {
           <nav aria-label="Primary navigation" className="hidden lg:block">
             <ul className="flex items-center gap-8">
               {siteSettings.navigation.map((item) => {
-                const active = isActiveRoute(pathname, item.href)
+                const active =
+                  activeSection === item.href ||
+                  (!activeSection && isActiveRoute(pathname, item.href))
 
                 return (
                   <li key={item.href}>
@@ -322,7 +347,9 @@ export function SiteHeader() {
         <nav aria-label="Mobile primary navigation" className="flex-1 overflow-y-auto px-5 py-7">
           <ul className="space-y-1">
             {siteSettings.navigation.map((item) => {
-              const active = isActiveRoute(pathname, item.href)
+              const active =
+                activeSection === item.href ||
+                (!activeSection && isActiveRoute(pathname, item.href))
 
               return (
                 <li key={item.href}>
