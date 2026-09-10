@@ -2,7 +2,6 @@ import BlogSection from '@/components/home/BlogSection'
 import ClientsSection from '@/components/home/ClientsSection'
 import Footer from '@/components/home/Footer'
 import Hero from '@/components/home/Hero'
-import HowWeWork from '@/components/home/HowWeWork'
 import PortfolioSection from '@/components/home/PortfolioSection'
 import ServicesSection from '@/components/home/ServicesSection'
 import StatsFaqSection from '@/components/home/StatsFaqSection'
@@ -20,7 +19,6 @@ export default async function Home() {
       <main id="primary">
         <Hero slides={content.heroSlides} />
         <ClientsSection partners={content.partners} />
-        <HowWeWork />
         <ServicesSection items={catalog.services} />
         <PortfolioSection />
         <TeamSection />
