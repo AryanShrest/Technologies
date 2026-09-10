@@ -356,6 +356,33 @@ select {
   transform: translateY(0);
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+.animate-float-badge {
+  animation: float-badge 3.5s ease-in-out infinite;
+}
+
 @keyframes marquee-left {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-33.333%); }
@@ -377,6 +404,14 @@ select {
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-left,
   .animate-marquee-right {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-badge {
     animation: none;
   }
 }

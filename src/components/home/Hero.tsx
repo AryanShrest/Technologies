@@ -116,7 +116,7 @@ export default function Hero({
           </div>
 
           {/* ── RIGHT COLUMN — Dual Image Slideshow ── */}
-          <div className="relative mx-auto w-full max-w-[32rem] h-[400px] lg:h-[440px]">
+          <div className="relative mx-auto w-full max-w-[32rem] h-[400px] lg:h-[440px] animate-float">
             {/* Card 1 — large, top-left */}
             <div className="absolute left-0 top-0 w-[80%] h-[75%] rounded-2xl overflow-hidden shadow-2xl shadow-black/20 border-4 border-white">
               {slides.map((slide, i) => (
@@ -177,7 +177,7 @@ export default function Hero({
             </div>
 
             {/* Stat badge — top right */}
-            <div className="absolute -right-4 top-4 z-20 rounded-2xl border border-indigo-100 bg-white px-4 py-3 shadow-xl">
+            <div className="absolute -right-4 top-4 z-20 rounded-2xl border border-indigo-100 bg-white px-4 py-3 shadow-xl animate-float-badge" style={{ animationDelay: '0.5s' }}>
               <div className="text-[11px] text-slate-500 mb-0.5">Projects Done</div>
               <div className="text-lg font-extrabold text-slate-900 leading-none">
                 <AnimatedCounter value={120} suffix="+" duration={1400} />
@@ -188,7 +188,7 @@ export default function Hero({
             </div>
 
             {/* Stat badge — bottom left */}
-            <div className="absolute -left-4 bottom-12 z-20 rounded-2xl border border-green-100 bg-white px-4 py-3 shadow-xl">
+            <div className="absolute -left-4 bottom-12 z-20 rounded-2xl border border-green-100 bg-white px-4 py-3 shadow-xl animate-float-badge" style={{ animationDelay: '1s' }}>
               <div className="text-[11px] text-slate-500 mb-0.5">Client Retention</div>
               <div className="text-lg font-extrabold text-slate-900 leading-none">
                 <AnimatedCounter value={98} suffix="%" duration={1400} />

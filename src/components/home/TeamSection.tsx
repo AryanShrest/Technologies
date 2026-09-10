@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { Reveal } from '@/components/motion'
 
 const TEAM = [
   {
@@ -53,7 +54,7 @@ export default function TeamSection() {
   return (
     <section ref={sectionRef} id="team" className="py-10 lg:py-14" style={{ background: 'var(--color-surface-light)' }}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <span className="inline-block bg-orange-500 text-white text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 mb-5">
             OUR TEAM
           </span>
@@ -63,7 +64,7 @@ export default function TeamSection() {
           <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--color-body)' }}>
             Meet the people behind our work. Our dedicated team brings creativity, expertise, and passion to everything we do.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {TEAM.map((member, i) => (

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { cn } from '@/utils/format'
+import { Reveal } from '@/components/motion'
 
 const STATS = [
   {
@@ -58,7 +59,7 @@ export default function StatsFaqSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left: Stats + Team */}
-          <div className="relative">
+          <Reveal variant="fade-right">
             {/* Stats badges cluster */}
             <div className="relative h-[480px]">
               {/* Center photo */}
@@ -148,10 +149,10 @@ export default function StatsFaqSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right: FAQ */}
-          <div>
+          <Reveal variant="fade-left" delay={150}>
             <h3 className="text-xs font-semibold text-primary-600 tracking-[0.25em] uppercase mb-3">
               FAQ
             </h3>
@@ -223,7 +224,7 @@ export default function StatsFaqSection() {
                 )
               })}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

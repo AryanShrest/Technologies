@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { Reveal } from '@/components/motion'
 
 const PROJECTS = [
   {
@@ -77,7 +78,7 @@ export default function PortfolioSection() {
   return (
     <section ref={sectionRef} id="portfolio" className="py-10 lg:py-14 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-14">
+        <Reveal className="mb-14">
           <span className="inline-block bg-orange-500 text-white text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 mb-5">
             PORTFOLIO
           </span>
@@ -89,7 +90,7 @@ export default function PortfolioSection() {
             showcase a handpicked collection of our recent project deliveries, offering you a glimpse into
             the outstanding work we produce.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-12 lg:gap-x-16 lg:gap-y-14">
           {PROJECTS.map((project, i) => (

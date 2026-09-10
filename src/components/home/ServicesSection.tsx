@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Reveal, StaggerGroup } from '@/components/motion'
 
 const serviceImg = (keyword: string) =>
   `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=${encodeURIComponent(
@@ -66,7 +67,7 @@ export default function ServicesSection() {
   return (
     <section className="py-10 lg:py-14 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <div className="inline-flex items-center gap-3 text-xs font-semibold text-primary-600 tracking-[0.25em] uppercase mb-4">
             <span className="w-10 h-px bg-primary-400" />
             OUR BEST SERVICES
@@ -75,9 +76,9 @@ export default function ServicesSection() {
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
             We Kinds of Services Business
           </h2>
-        </div>
+        </Reveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-7" interval={100}>
           {SERVICES.map((s) => (
             <article
               key={s.title}
@@ -113,7 +114,7 @@ export default function ServicesSection() {
               </div>
             </article>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   )

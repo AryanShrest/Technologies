@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { Reveal, StaggerGroup } from '@/components/motion'
 
 const STEPS = [
   {
@@ -109,7 +110,7 @@ export default function HowWeWork() {
     <section className="py-10 lg:py-14 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <span className="inline-block bg-indigo-600 text-white text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded mb-5">
             HOW WE WORK
           </span>
@@ -120,10 +121,10 @@ export default function HowWeWork() {
             No surprises, no guesswork. Our four-step approach keeps you informed and involved from
             day one.
           </p>
-        </div>
+        </Reveal>
 
         {/* Cards row */}
-        <div className="flex flex-col lg:flex-row items-stretch gap-4 lg:gap-0">
+        <StaggerGroup className="flex flex-col lg:flex-row items-stretch gap-4 lg:gap-0" interval={120}>
           {STEPS.map((step, i) => (
             <Fragment key={step.num}>
               <div className="flex-1 bg-white rounded-2xl border border-slate-200 shadow-sm p-9 flex flex-col gap-5 hover:shadow-md hover:border-indigo-200 transition-all duration-300">
@@ -149,10 +150,10 @@ export default function HowWeWork() {
               {i < STEPS.length - 1 && <ArrowRight />}
             </Fragment>
           ))}
-        </div>
+        </StaggerGroup>
 
         {/* CTA */}
-        <div className="mt-12 text-center">
+        <Reveal className="mt-12 text-center" delay={200}>
           <a
             href="/contact"
             className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-colors"
@@ -168,7 +169,7 @@ export default function HowWeWork() {
               />
             </svg>
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

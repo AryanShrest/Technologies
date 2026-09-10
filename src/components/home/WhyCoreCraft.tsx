@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Reveal, StaggerGroup } from '@/components/motion'
 
 const WHY_IMG =
   'https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Happy%20diverse%20creative%20team%20brainstorming%20around%20table%20in%20modern%20office%2C%20reviewing%20laptop%20designs%20together%2C%20natural%20light%2C%20business%20people%20collaborating%20photorealistic&image_size=landscape_4_3'
@@ -35,7 +36,7 @@ export default function WhyCoreCraft() {
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left content */}
-          <div>
+          <Reveal variant="fade-right">
             <div className="inline-flex items-center gap-3 text-xs font-semibold text-blue-200 tracking-[0.25em] uppercase mb-4">
               <span className="w-10 h-px bg-blue-300/60" />
               WHY CORECRAFT TECHNOLOGIES?
@@ -69,10 +70,10 @@ export default function WhyCoreCraft() {
               About Us
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
-          </div>
+          </Reveal>
 
           {/* Right image panel with sidebar tag */}
-          <div className="relative">
+          <Reveal variant="fade-left" delay={150}>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
               <div className="aspect-[5/4]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -101,7 +102,7 @@ export default function WhyCoreCraft() {
 
             {/* Bottom bar */}
             <div className="absolute -bottom-6 -right-6 bg-blue-400 w-24 h-24 rounded-2xl -z-10" />
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

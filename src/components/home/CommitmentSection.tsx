@@ -1,3 +1,4 @@
+import { Reveal, StaggerGroup } from '@/components/motion'
 import Link from 'next/link'
 
 const COMMIT_IMG =
@@ -58,7 +59,7 @@ export default function CommitmentSection() {
         {/* Header + Image */}
         <div className="grid lg:grid-cols-5 gap-14 items-center mb-24">
           {/* Left image */}
-          <div className="lg:col-span-2 relative">
+          <Reveal variant="fade-right" className="lg:col-span-2 relative">
             <div className="absolute -inset-4">
               <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-primary-500 rounded-tl-2xl" />
               <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-primary-500 rounded-br-2xl" />
@@ -73,10 +74,10 @@ export default function CommitmentSection() {
                 />
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right content */}
-          <div className="lg:col-span-3">
+          <Reveal variant="fade-left" delay={150} className="lg:col-span-3">
             <div className="inline-flex items-center gap-3 text-xs font-semibold text-blue-300 tracking-[0.25em] uppercase mb-4">
               <span className="w-10 h-px bg-blue-400/60" />
               OUR COMMITMENT
@@ -117,11 +118,11 @@ export default function CommitmentSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Offerings row */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <StaggerGroup className="grid md:grid-cols-3 gap-6 mb-16" interval={120}>
           {OFFERINGS.map((o, i) => (
             <div
               key={o.title}
@@ -140,10 +141,10 @@ export default function CommitmentSection() {
               <p className="text-sm text-gray-600 leading-relaxed">{o.desc}</p>
             </div>
           ))}
-        </div>
+        </StaggerGroup>
 
         {/* Bottom CTA bar */}
-        <div className="relative">
+        <Reveal delay={100}>
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] h-20 bg-primary-500/30 blur-2xl rounded-full" />
           <div className="relative bg-gradient-to-r from-primary-600 to-blue-500 rounded-2xl shadow-2xl shadow-primary-900/40 overflow-hidden">
             <div className="absolute right-0 top-0 w-40 h-40 rounded-full bg-white/10 blur-2xl" />
@@ -172,7 +173,7 @@ export default function CommitmentSection() {
               <div className="w-0 h-0 border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent border-l-[20px] border-l-blue-500" />
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )
