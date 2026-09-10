@@ -152,6 +152,7 @@ export function SiteHeader() {
   }, [pathname])
 
   useEffect(() => {
+    if (!menuOpen) return
 
     const previousOverflow = document.body.style.overflow
     const panel = mobilePanelRef.current
