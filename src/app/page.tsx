@@ -1,7 +1,6 @@
 import BlogSection from '@/components/home/BlogSection'
 import ClientsSection from '@/components/home/ClientsSection'
 import CommitmentSection from '@/components/home/CommitmentSection'
-import ContactSection from '@/components/home/ContactSection'
 import Footer from '@/components/home/Footer'
 import Hero from '@/components/home/Hero'
 import HowWeWork from '@/components/home/HowWeWork'
@@ -31,7 +30,6 @@ export default async function Home() {
         <StatsFaqSection />
         <ReadyCta />
         <CommitmentSection />
-        <ContactSection />
         <BlogSection />
       </main>
       <Footer />
