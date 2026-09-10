@@ -5,7 +5,6 @@ import Footer from '@/components/home/Footer'
 import Hero from '@/components/home/Hero'
 import HowWeWork from '@/components/home/HowWeWork'
 import PortfolioSection from '@/components/home/PortfolioSection'
-import ReadyCta from '@/components/home/ReadyCta'
 import ServicesSection from '@/components/home/ServicesSection'
 import StatsFaqSection from '@/components/home/StatsFaqSection'
 import TeamSection from '@/components/home/TeamSection'
@@ -28,7 +27,6 @@ export default async function Home() {
         <TeamSection />
         <WhyCoreCraft />
         <StatsFaqSection />
-        <ReadyCta />
         <CommitmentSection />
         <BlogSection />
       </main>
