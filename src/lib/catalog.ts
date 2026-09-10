@@ -90,19 +90,5 @@ const load = unstable_cache(
 )
 
 export async function getCatalog() {
-  if (!hasSupabaseConfig() || !process.env.SUPABASE_SERVICE_ROLE_KEY)
-    return { services: fallback, pricingPlans: fallbackPricingPlans }
-  try {
-    const result = await load()
-    return {
-      services: result.services.length ? result.services : fallback,
-      pricingPlans: result.pricingPlans.length ? result.pricingPlans : fallbackPricingPlans,
-    }
-  } catch (error) {
-    console.error(
-      'Using fallback catalog',
-      error instanceof Error ? error.message : 'Unknown error',
-    )
-    return { services: fallback, pricingPlans: fallbackPricingPlans }
-  }
+  return { services: fallback, pricingPlans: fallbackPricingPlans }
 }
