@@ -170,7 +170,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="hidden h-12 overflow-hidden bg-[var(--color-navy)] lg:block">
+      <div className="hidden h-12 overflow-hidden bg-indigo-600 lg:block transition-all duration-300 ease-in-out" style={{ height: scrolled ? '0px' : '3rem', opacity: scrolled ? 0 : 1 }}>
         <div
           className={cn(
             'flex h-full items-center justify-between gap-8 text-sm text-white transition-[transform,opacity] duration-[var(--motion-hover)] ease-[var(--ease-standard)] will-change-transform',
