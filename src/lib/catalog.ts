@@ -90,5 +90,21 @@ const load = unstable_cache(
 )
 
 export async function getCatalog() {
-  return { services: fallback, pricingPlans: fallbackPricingPlans }
+  if (!hasSupabaseConfig() || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return { services: fallback, pricingPlans: fallbackPricingPlans }
+  }
+
+  try {
+    const result = await load()
+    return {
+      services: result.services.length > 0 ? result.services : fallback,
+      pricingPlans: result.pricingPlans.length > 0 ? result.pricingPlans : fallbackPricingPlans,
+    }
+  } catch (error) {
+    console.error(
+      'Using fallback services and pricing',
+      error instanceof Error ? error.message : 'Unknown error',
+    )
+    return { services: fallback, pricingPlans: fallbackPricingPlans }
+  }
 }

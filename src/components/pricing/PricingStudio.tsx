@@ -234,15 +234,18 @@ export function PricingStudio({ plans }: { plans: PricingPlan[] }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {comparisonRows.map((row) => (
+                    {comparisonRows.map((row, rowIndex) => (
                       <tr className="border-t border-slate-100" key={row[0]}>
                         {row.map((cell, index) =>
                           index === 0 ? (
-                            <th className="p-5 font-semibold text-ink-heading" key={cell}>
+                            <th
+                              className="p-5 font-semibold text-ink-heading"
+                              key={`${rowIndex}-${index}`}
+                            >
                               {cell}
                             </th>
                           ) : (
-                            <td className="p-5 text-ink-body" key={cell}>
+                            <td className="p-5 text-ink-body" key={`${rowIndex}-${index}`}>
                               {cell}
                             </td>
                           ),
